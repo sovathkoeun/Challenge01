@@ -13,19 +13,27 @@ const options = {
   day: "numeric"
 };
 const today = new Date();
-DATE_HTML.innerHTML = today.toLocaleDateString("en-US", options);
+DATE_HTML.innerHTML = today.toLocaleString("en-US", options);
 
 document.addEventListener("keyup", event => {
-	if(event.code === 'Enter'){
-		const TODOS = InputElement.value;
-		if(TODOS != "") {
-			console.log(TODOS);
-			clearInput();
-		}
-	}
-	
+	if (event.code == "Enter") {
+    const inputValue = INPUT_HTML.value;
+
+    if (inputValue != null) {
+       // 1. add the todo
+    // TODO: call addTodo function
+      addTodO(inputValue);
+    // 2.  Clear input
+      clearInput();
+    }
+  }
 });
 
 function clearInput() {
-      InputElement.value = "";
+	INPUT_HTML.value = "";
+}
+
+function addTodO(todoName) {
+  console.log(todoName);
+	// TODO: console todoName
 }
