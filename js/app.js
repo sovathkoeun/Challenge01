@@ -26,7 +26,7 @@ document.addEventListener("keyup", event => {
 
     if (inputValue != null) {
       // 1. add the todo
-	  addTodo(inputValue);
+		
       // 2.  Clear input
       clearInput();
     }
@@ -43,7 +43,18 @@ function addTodo(todoName) {
     id: id,
     name: todoName,
     done: false,
-  });
+  })
   // console array
   console.log(todoItems);
+  // TODO: call updateList function
+  updateList();
+}
+
+function updateList() {
+  let code = "";
+  // TODO: loop get value from array 
+  for(let i = 0; i < todoItems.length; i++){
+    console.log(i);
+  }
+
 }
