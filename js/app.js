@@ -45,14 +45,14 @@ document.addEventListener("keyup", event => {
 function clearInput() {
 	INPUT_HTML.value = "";
 }
-//3. get id and return value
+// TODO: get id and return value
 function getTodoFromId(id) {
- for(let item of todoItems){
-   if(item.id === id){
-     return item;
-   }
- }
- return null;
+  for(let item of todoItems) {
+    if(item.id === id) {
+      return  item;
+    }
+  }
+  return null;
 }
 
 function addTodo(todoName) {
@@ -75,9 +75,15 @@ function updateList() {
         <i class="fa fa-trash-o de" job="delete" id="${item.id}"></i>
     </li>`;
   LIST_HTML.innerHTML = code;
+  
   }
 }
 
 function saveJson() {
    localStorage.setItem("TODO", JSON.stringify(todoItems));
 }
+// TODO: create event click and get job attributes value 
+document.addEventListener('click', event => {
+  const elementConpletjob = event.target.attributes.job.value;
+      console.log(elementConpletjob);
+});
