@@ -14,6 +14,18 @@ const options = {
 };
 const today = new Date();
 DATE_HTML.innerHTML = today.toLocaleString("en-US", options);
+// add
+const Element_Add = document.querySelector('#add')
+        .addEventListener('click', function () {
+          const inputValue = INPUT_HTML.value;
+
+          if (inputValue != null) {
+            // 1. add the todo
+            addTodo(inputValue)
+            // 2.  Clear input
+            clearInput();
+          }
+        });
 
 let todoItems = [];
 let id = 0;
@@ -74,9 +86,8 @@ function updateList() {
         <p class="text ${item.done ? LINE_THOUGH_STYLE: "" }">${item.name}</p>
         <i class="fa fa-trash-o de" job="delete" id="${item.id}"></i>
     </li>`;
-  LIST_HTML.innerHTML = code;
-  
   }
+  LIST_HTML.innerHTML = code;
 }
 
 function saveJson() {
@@ -96,31 +107,35 @@ document.addEventListener("click", function(event) {
 
 
 function completeToDo(id) {
-  // TODO: todo via its id
-  const todo = getTodoFromId(id);
-  // check if todo != nulll
-  if(todo != null) {
-     // change status todo of done
-      todo.done = !todo.done;
+   // 1. Get the TODO from its ID
+  let todo = getTodoFromId(id);
+
+  if (todo != null) {
+    // 2. Change the status of this todo
+    todo.done = !todo.done;
+
+    // 3. Save JSON
+    saveJson();
+
+    // 4. refresh html
+    updateList();
   }
-  // save JSON
-  saveJson();
-  // update html
-  updateList();
 }	
 
 function removeToDo(id) {
-var index = -1;
-	 for(let i = 0; i < todoItems.length; i++){
+  // 1. Find index todo element from ID
+  var index = -1;
+  for(let i = 0; i < todoItems.length; i++) {
     if(todoItems[i].id === id){
       index = i;
     }
-   }
+  }
   // remove
-  if(index != -1){
-    todoItems.splice(index,1);
-  } 
+  if(index != -1) {
+    todoItems.splice(index, 1);
+  }
   saveJson();
   updateList();
+
 }
 
