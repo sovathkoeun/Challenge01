@@ -94,15 +94,33 @@ document.addEventListener("click", function(event) {
   }
 });
 
-// create function removeToDo() 
-// paramenter is id
+
+function completeToDo(id) {
+  // TODO: todo via its id
+  const todo = getTodoFromId(id);
+  // check if todo != nulll
+  if(todo != null) {
+     // change status todo of done
+      todo.done = !todo.done;
+  }
+  // save JSON
+  saveJson();
+  // update html
+  updateList();
+}	
+
 function removeToDo(id) {
-      
-} 
-
-// create function completeToDo()
-// paramenter is id
-function completeToDo(id){
-
+var index = -1;
+	 for(let i = 0; i < todoItems.length; i++){
+    if(todoItems[i].id === id){
+      index = i;
+    }
+   }
+  // remove
+  if(index != -1){
+    todoItems.splice(index,1);
+  } 
+  saveJson();
+  updateList();
 }
 
